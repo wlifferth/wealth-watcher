@@ -29,3 +29,8 @@ for year in range(2017, 2018):
             for key, val in consistents.items():
                 if day == val[0]:
                     print("{}-{}-{},{},{:.2f}".format(year, month, day, key, val[1]))
+
+print("2017-2-10,North Korean Missile Program,30.87")
+print("2017-5-9,McDonalds,492.42")
+print("2017-7-27,Target,1300.76")
+print("2017-10-1,McDonalds,10.99,90210")
