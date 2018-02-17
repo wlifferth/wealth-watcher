@@ -80,8 +80,7 @@ class Customer:
 
 class Account:
     def Print(self):
-        print(self.nickname,self.type,self._id,self.balance)
-        print(self.customer_id,self.account_number,self.rewards)
+        print(self.nickname,self.type,self._id,self.balance,self.customer_id,self.account_number,self.rewards)
 
     def __init__(self,jsn):
         self._id = jsn['_id']
@@ -96,7 +95,6 @@ class Account:
     def GetAll():
         url = 'http://api.reimaginebanking.com/accounts?key={}'.format(apiKey)
         tmp = json.loads(requests.get(url).text)
-        print(tmp)
         accounts = list()
         for v in tmp:
             accounts.append(Account(v))
@@ -139,7 +137,9 @@ class Account:
             dct['balance']=b
         if a is not None:
             dct['account_number']=a
+        print(dct)
         response = requests.put(url,data=json.dumps(dct),headers={'content-type':'application/json'})
+        print(response.text)
         return response.status_code
 
     @staticmethod
