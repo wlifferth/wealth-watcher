@@ -1,7 +1,3 @@
-#users
-#accounts
-#transactions
-
 import requests
 import json
 
