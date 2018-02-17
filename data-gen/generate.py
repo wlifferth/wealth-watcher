@@ -7,7 +7,7 @@ stores = {
         "Weigels": (4.0, 21.0, 1.0),
         "Regal Cinema": (3.0, 11.25, 0),
         "Amazon": (3.0, 20.0, 50.0),
-        "O'Charleys": (2.0, 16.0, 3.0),
+        "O'Charley's": (2.0, 16.0, 3.0),
         "17th Street Deli": (4.0, 5.49, 3)
         }
 
