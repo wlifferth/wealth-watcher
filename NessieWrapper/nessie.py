@@ -4,6 +4,12 @@ import json
 apiKey = 'f515af811125f9dea31a755fe628357e'
 
 class Customer:
+    def Print(self):
+        print(self.first_name,self.last_name)
+        print('id:',self._id)
+        print(self.street_number,self.street_name,self.city,self.state,self.zipcode)
+
+
     def __init__(self,jsn):
         self._id = jsn['_id']
         self.first_name = jsn['first_name']
@@ -14,15 +20,17 @@ class Customer:
         self.state = jsn['address']['state']
         self.zipcode = jsn['address']['zip']
 
+
     @staticmethod
     def GetByAccount(id_):
         url = 'http://api.reimaginebanking.com/accounts/{}/customer?key={}'.format(id_,apiKey)
-        return Customer(json.loads(requests.get(url)))
+        return Customer(json.loads(requests.get(url).text))
 
     @staticmethod
     def GetAll():
         url = 'http://api.reimaginebanking.com/customers?key={}'.format(apiKey)
-        tmp = json.loads(requests.get(url))
+        tmp = json.loads(requests.get(url).text)
+        customers = list()
         for v in tmp:
             customers.append(Customer(v))
         return customers
@@ -30,7 +38,7 @@ class Customer:
     @staticmethod
     def GetById(id_):
         url = 'http://api.reimaginebanking.com/customers/{}?key={}'.format(id_,apiKey)
-        return Customer(json.loads(requests.get(url)))
+        return Customer(json.loads(requests.get(url).text))
 
     @staticmethod
     def Create(fn,ln,address):
@@ -39,11 +47,11 @@ class Customer:
                 'first_name': fn,
                 'last_name': ln,
                 'address': {
-                    'street_number': address['street_number']
-                    'street_name': address['street_name']
-                    'city': address['city']
-                    'state': address['state']
-                    'zip': address['zip']
+                    'street_number': address['street_number'],
+                    'street_name': address['street_name'],
+                    'city': address['city'],
+                    'state': address['state'],
+                    'zip': address['zip'],
                     }
                 }
         response = requests.post(url,data=json.dumps(var),headers={'content-type':'application/json'})
@@ -52,17 +60,18 @@ class Customer:
     @staticmethod
     def Update(id_,fn=None,ln=None,address=None):
         url = 'http://api.reimaginebanking.com/customers/{}?key={}'.format(id_,apiKey)
+        dct = dict()
         if fn is not None:
             dct['first_name'] = fn
         if ln is not None:
             dct['last_name'] = ln
         if address is not None:
             dct['address'] = {
-                    'street_number': address['street_number']
-                    'street_name': address['street_name']
-                    'city': address['city']
-                    'state': address['state']
-                    'zip': address['zip']
+                    'street_number': address['street_number'],
+                    'street_name': address['street_name'],
+                    'city': address['city'],
+                    'state': address['state'],
+                    'zip': address['zip'],
                     }
         response = requests.put(url,data=json.dumps(dct),headers={'content-type':'application/json'})
         return response.status_code
@@ -70,6 +79,10 @@ class Customer:
 
 
 class Account:
+    def Print(self):
+        print(self.nickname,self.type,self._id,self.balance)
+        print(self.customer_id,self.account_number,self.rewards)
+
     def __init__(self,jsn):
         self._id = jsn['_id']
         self.type = jsn['type']
@@ -82,7 +95,9 @@ class Account:
     @staticmethod
     def GetAll():
         url = 'http://api.reimaginebanking.com/accounts?key={}'.format(apiKey)
-        tmp = json.loads(requests.get(url))
+        tmp = json.loads(requests.get(url).text)
+        print(tmp)
+        accounts = list()
         for v in tmp:
             accounts.append(Account(v))
         return accounts
@@ -90,12 +105,12 @@ class Account:
     @staticmethod
     def GetById(id_):
         url = 'http://api.reimaginebanking.com/accounts/{}?key={}'.format(id_,apiKey)
-        return Account(json.loads(requests.get(url)))
+        return Account(json.loads(requests.get(url).text))
 
     @staticmethod
     def GetByCustomer(id_):
         url = 'http://api.reimaginebanking.com/customers/{}/accounts?key={}'.format(id_,apiKey)
-        return Account(json.loads(requests.get(url)))
+        return Account(json.loads(requests.get(url).text))
 
     @staticmethod
     def Create(id_,t,n,r,b,a):
@@ -113,6 +128,7 @@ class Account:
     @staticmethod
     def Update(id_,t=None,n=None,r=None,b=None,a=None):
         url = 'http://api.reimaginebanking.com/accounts/{}?key={}'.format(id_,apiKey)
+        dct = dict()
         if t is not None:
             dct['type']=t
         if n is not None:
@@ -151,14 +167,15 @@ class Transfer:
         return response.status_code
 
     @staticmethod
-    def GetById(id_)
+    def GetById(id_):
         url = 'http://api.reimaginebanking.com/transfers/{}?key={}'.format(id_,apiKey)
-        return Transfer(json.loads(requests.get(url)))
+        return Transfer(json.loads(requests.get(url).text))
 
     @staticmethod
-    def GetAll()
+    def GetAll():
         url = 'http://api.reimaginebanking.com/accounts/{}/transfers?key={}'.format(id_,apiKey)
-        tmp = json.loads(requests.get(url))
+        tmp = json.loads(requests.get(url).text)
+        transfers = list()
         for v in tmp:
             transfers.append(Customer(v))
         return transfers
@@ -178,6 +195,7 @@ class Transfer:
 
     @staticmethod
     def Update(id_,m=None,p=None,t=None,s=None,d=None):
+        dct = dict()
         if m is not None:
             dct['medium']=m
         if p is not None:
@@ -207,7 +225,8 @@ class Merchant:
     @staticmethod
     def GetAll():
         url = 'http://api.reimaginebanking.com/merchants?key={}'.format(apiKey)
-        tmp = json.loads(requests.get(url))
+        tmp = json.loads(requests.get(url).text)
+        merchants = list()
         for v in tmp:
             merchants.append(Merchants(v))
         return merchants
@@ -215,7 +234,7 @@ class Merchant:
     @staticmethod
     def GetById(id_):
         url = 'http://api.reimaginebanking.com/merchants/{}?key={}'.format(id_,apiKey)
-        return Merchant(json.loads(requests.get(url)))
+        return Merchant(json.loads(requests.get(url).text))
 
     @staticmethod
     def Create(n,c,a,g):
@@ -224,10 +243,10 @@ class Merchant:
                 'name': n,
                 'category': c,
                 'address': {
-                    'street_number': address['street_number']
-                    'street_name': address['street_name']
-                    'city': address['city']
-                    'state': address['state']
+                    'street_number': address['street_number'],
+                    'street_name': address['street_name'],
+                    'city': address['city'],
+                    'state': address['state'],
                     'zip': address['zip']
                     },
                 'geocode': {
@@ -241,6 +260,7 @@ class Merchant:
     @staticmethod
     def Update(id_,n=None,c=None,a=None,g=None):
         url = 'http://api.reimaginebanking.com/merchants/{}?key={}'.format(id_,apiKey)
+        dct = dict()
         if n is not None:
             dct['name'] = n
         if c is not None:
@@ -267,7 +287,8 @@ class Purchase:
     @staticmethod
     def GetAllByAccount(id_):
         url = 'http://api.reimaginebanking.com/accounts/{}/purchases?key={}'.format(id_,apiKey)
-        tmp = json.loads(requests.get(url))
+        tmp = json.loads(requests.get(url).text)
+        purchases = list()
         for v in tmp:
             purchases.append(Purchases(v))
         return purchases
@@ -275,7 +296,8 @@ class Purchase:
     @staticmethod
     def GetAllByMerchant(id_):
         url = 'http://api.reimaginebanking.com/merchants/{}/purchases?key={}'.format(id_,apiKey)
-        tmp = json.loads(requests.get(url))
+        tmp = json.loads(requests.get(url).text)
+        purchases = list()
         for v in tmp:
             purchases.append(Purchases(v))
         return purchases
@@ -283,7 +305,8 @@ class Purchase:
     @staticmethod
     def GetAllByAccountAndMerchant(id_a,id_m):
         url = 'http://api.reimaginebanking.com/merchants/{}/accounts/{}/purchases?key={}'.format(id_m,id_a,apiKey)
-        tmp = json.loads(requests.get(url))
+        tmp = json.loads(requests.get(url).text)
+        purchases = list()
         for v in tmp:
             purchases.append(Purchases(v))
         return purchases
@@ -291,7 +314,7 @@ class Purchase:
     @staticmethod
     def GetById(id_):
         url = 'http://api.reimaginebanking.com/purchases/{}?key={}'.format(id_,apiKey)
-        return Account(json.loads(requests.get(url)))
+        return Account(json.loads(requests.get(url).text))
 
     @staticmethod
     def Create(aid,mid,m,p,a,s,d):
@@ -310,15 +333,16 @@ class Purchase:
     @staticmethod
     def Update(id_,t=None,mid=None,pid=None,pd=None,a=None,s=None,m=None,d=None):
         url = 'http://api.reimaginebanking.com/purchases/{}?key={}'.format(id_,apiKey)
+        dct = dict()
         if t is not None:
             dct['type'] = t
-        if mid not None:
+        if mid is not None:
             dct['merchant_id'] = mid
-        if pid not None:
+        if pid is not None:
             dct['payer_id'] = pid
-        if pd not None:
+        if pd is not None:
             dct['purchase_date'] = pd
-        if a not None:
+        if a is not None:
             dct['amount'] = a
         if s is not None:
             dct['status'] = s
