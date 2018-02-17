@@ -25,7 +25,7 @@ SECRET_KEY = 'a8ty@ijrom*pp0wq)a#gdfct$3ably%ne9p(cnz@y1!jlao*+1'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["getwealthwatcher.com"]
 
 
 # Application definition
