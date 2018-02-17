@@ -8,11 +8,11 @@ class Customer:
         self._id = jsn['_id']
         self.first_name = jsn['first_name']
         self.last_name = jsn['last_name']
-        self.street_number = jsn['account']['street_number']
-        self.street_name = jsn['account']['street_name']
-        self.city = jsn['account']['city']
-        self.state = jsn['account']['state']
-        self.zipcode = jsn['account']['zip']
+        self.street_number = jsn['address']['street_number']
+        self.street_name = jsn['address']['street_name']
+        self.city = jsn['address']['city']
+        self.state = jsn['address']['state']
+        self.zipcode = jsn['address']['zip']
 
     @staticmethod
     def GetByAccount(id_):
@@ -189,4 +189,148 @@ class Transfer:
         if d is not None:
             dct['description']=d
         response = requests.put(url,data=json.dumps(dct),headers={'content-type':'application/json'})
+        return response.status_code
+
+class Merchant:
+    def __init__(self,jsn):
+        self._id = jsn['_id']
+        self.name = jsn['name']
+        self.category = jsn['category']
+        self.street_number = jsn['address']['street_number']
+        self.street_name = jsn['address']['street_name']
+        self.city = jsn['address']['city']
+        self.state = jsn['address']['state']
+        self.zipcode = jsn['address']['zip']
+        self.lat = jsn['geocode']['lat']
+        self.lng = jsn['geocode']['lng']
+
+    @staticmethod
+    def GetAll():
+        url = 'http://api.reimaginebanking.com/merchants?key={}'.format(apiKey)
+        tmp = json.loads(requests.get(url))
+        for v in tmp:
+            merchants.append(Merchants(v))
+        return merchants
+
+    @staticmethod
+    def GetById(id_):
+        url = 'http://api.reimaginebanking.com/merchants/{}?key={}'.format(id_,apiKey)
+        return Merchant(json.loads(requests.get(url)))
+
+    @staticmethod
+    def Create(n,c,a,g):
+        url = 'http://api.reimaginebanking.com/merchants?key={}'.format(apiKey)
+        var = {
+                'name': n,
+                'category': c,
+                'address': {
+                    'street_number': address['street_number']
+                    'street_name': address['street_name']
+                    'city': address['city']
+                    'state': address['state']
+                    'zip': address['zip']
+                    },
+                'geocode': {
+                    'lat': g['lat'],
+                    'lng': g['lng']
+                    }
+                }
+        response = requests.post(url,data=json.dumps(var),headers={'content-type':'application/json'})
+        return response.status_code
+
+    @staticmethod
+    def Update(id_,n=None,c=None,a=None,g=None):
+        url = 'http://api.reimaginebanking.com/merchants/{}?key={}'.format(id_,apiKey)
+        if n is not None:
+            dct['name'] = n
+        if c is not None:
+            dct['category'] = c
+        if a is not None:
+            dct['address'] = a
+        if g is not None:
+            dct['geocode'] = g
+        response = requests.put(url,data=json.dumps(dct),headers={'content-type':'application/json'})
+        return response.status_code
+
+class Purchase:
+    def __init__(self,jsn):
+        self._id = jsn['_id']
+        self.type = jsn['type']
+        self.merchant_id = jsn['merchant_id']
+        self.payer_id = jsn['payer_id']
+        self.purchase_date = jsn['purchase_date']
+        self.amount = jsn['amount']
+        self.status = jsn['status']
+        self.medium = jsn['medium']
+        self.description = jsn['description']
+
+    @staticmethod
+    def GetAllByAccount(id_):
+        url = 'http://api.reimaginebanking.com/accounts/{}/purchases?key={}'.format(id_,apiKey)
+        tmp = json.loads(requests.get(url))
+        for v in tmp:
+            purchases.append(Purchases(v))
+        return purchases
+
+    @staticmethod
+    def GetAllByMerchant(id_):
+        url = 'http://api.reimaginebanking.com/merchants/{}/purchases?key={}'.format(id_,apiKey)
+        tmp = json.loads(requests.get(url))
+        for v in tmp:
+            purchases.append(Purchases(v))
+        return purchases
+
+    @staticmethod
+    def GetAllByAccountAndMerchant(id_a,id_m):
+        url = 'http://api.reimaginebanking.com/merchants/{}/accounts/{}/purchases?key={}'.format(id_m,id_a,apiKey)
+        tmp = json.loads(requests.get(url))
+        for v in tmp:
+            purchases.append(Purchases(v))
+        return purchases
+
+    @staticmethod
+    def GetById(id_):
+        url = 'http://api.reimaginebanking.com/purchases/{}?key={}'.format(id_,apiKey)
+        return Account(json.loads(requests.get(url)))
+
+    @staticmethod
+    def Create(aid,mid,m,p,a,s,d):
+        url = 'http://api.reimaginebanking.com/accounts/{}/purchases?key={}'.format(aid,apiKey)
+        var = {
+                'merchant_id': mid,
+                'medium': m,
+                'purchase_date': p,
+                'amount': a,
+                'status': s,
+                'description': d
+                }
+        response = requests.post(url,data=json.dumps(var),headers={'content-type':'application/json'})
+        return response.status_code
+
+    @staticmethod
+    def Update(id_,t=None,mid=None,pid=None,pd=None,a=None,s=None,m=None,d=None):
+        url = 'http://api.reimaginebanking.com/purchases/{}?key={}'.format(id_,apiKey)
+        if t is not None:
+            dct['type'] = t
+        if mid not None:
+            dct['merchant_id'] = mid
+        if pid not None:
+            dct['payer_id'] = pid
+        if pd not None:
+            dct['purchase_date'] = pd
+        if a not None:
+            dct['amount'] = a
+        if s is not None:
+            dct['status'] = s
+        if m is not None:
+            dct['medium'] = m
+        if d is not None:
+            dct['description'] = d
+        response = requests.put(url,data=json.dumps(dct),headers={'content-type':'application/json'})
+        return response.status_code
+
+    @staticmethod
+    def Delete(id_):
+        url = 'http://api.reimaginebanking.com/purchases/{}?key={}'.format(id_,apiKey)
+        response = requests.delete(url)
         return response.status_code
