@@ -59,4 +59,16 @@ Using machine learning we can pinpoint transactions that might be fraudulent
 + payee_id
 + amount
 
+# Rules Based Approach
 
+# Distance -- 'distance'
+If distance between user and transaction is higher than n, flag as potentially fraudulent
+
+# Untrusted Merchant -- 'untrusted-merchant'
+If merchant is not on list of known merchants flag as potentially fraudulent
+
+# Unusual High Spending -- 'unusually-high-spending'
+If spending is unusually high, flag as potentially fraudulent
+
+# Unusually High Merchant Spending -- 'unusual-merchant-spending'
+If spending is higher than 2x median transaction for vendor, flag as potentially fraudulent
