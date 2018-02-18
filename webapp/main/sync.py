@@ -41,7 +41,7 @@ def sync():
     user_objects= UserProfile.objects.filter(user_id=accounts.customer_id)
     for uo in user_objects:
         print(uo)
-    if UserProfile.objects.count() == 0:
+    if Account.objects.count() == 0:
         for var in [accounts]:
             a = Account.objects.create(
                     account_id=var._id,
@@ -82,11 +82,12 @@ def sync():
                             purchase_id = pur._id,
                             date = pur.purchase_date,
                             merchant = Merchant.objects.filter(merchant_id=pur.merchant_id).get(),
-                            account = Account.objects.filter(account_id=aid).get(),
+                            account = Account.objects.filter(account_id=pur.payer_id).get(),
                             amount = pur.amount,
                             status = pur.status
                             )
                     p.save()
+                    new_count += 1
                 except:
                     pass
     print("NEW COUNT: {}".format(new_count))
