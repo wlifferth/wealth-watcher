@@ -10,6 +10,7 @@ urlpatterns = [
     path('alerts/', views.alerts, name='alerts'),
     path('alert/<purchase_id>/', views.alert, name='alert'),
     path('resolve/<purchase_id>/<resolution>/', views.resolve, name='resolve'),
+    path('run_learning', views.run_learning, name='run-learning'),
     path('run_rules/', views.run_rules, name='run-rules'),
     path('run_sync/', views.run_sync, name='run-sync'),
     path('login/', views.log_in, name='login'),

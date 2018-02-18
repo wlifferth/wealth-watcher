@@ -41,9 +41,9 @@ def rules():
         untrusted_purchase.save()
 
     # distance rule
-    close_purchases = Purchase.objects.filter(merchant__zipcode__startswith='37').filter(flag_code='none')
+    close_purchases = Purchase.objects.filter(merchant__zipcode__startswith='37')
     internet_purchases = Purchase.objects.filter(merchant__name__in=["Amazon", "Netflix"]).filter(flag_code='none')
-    far_purchases = Purchase.objects.exclude(pk__in=close_purchases.values_list('pk', flat=True)).exclude(pk__in=internet_purchases.values_list('pk', flat=True))
+    far_purchases = Purchase.objects.exclude(pk__in=close_purchases.values_list('pk', flat=True)).exclude(pk__in=internet_purchases.values_list('pk', flat=True)).filter(flag_code='none')
     print("Far purchases: {}".format(len(far_purchases)))
     for far_purchase in far_purchases:
         far_purchase.flag_code = 'distance'
