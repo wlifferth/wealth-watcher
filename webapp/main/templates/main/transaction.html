@@ -1,0 +1,17 @@
+<div class="row transaction-item">
+  <div class="col-xs-2 date-field">
+    {{ transaction.date }}
+  </div>
+  <div class="col-xs-3 merchant-field">
+    {{ transaction.merchant.name }}
+  </div>
+  <div class="col-xs-3 category-field">
+    {{ transaction.merchant.category }}
+  </div>
+  <div class="col-xs-2 amount-field">
+    ${{ transaction.amount }}
+  </div>
+  <div class="col-xs-2 flag-rating-field">
+    {{ transaction.flag_rating }}
+  </div>
+</div>

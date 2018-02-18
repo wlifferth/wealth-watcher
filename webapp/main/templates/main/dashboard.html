@@ -1,0 +1,27 @@
+{% extends 'main/base.html' %}
+{% block content %}
+<div id="body-content">
+  <div id="transaction-list">
+    <div class="row transaction-list-header">
+      <div class="col-xs-2 date-field">
+        Date
+      </div>
+      <div class="col-xs-3 merchant-field">
+        Merchant
+      </div>
+      <div class="col-xs-3 category-field">
+        Category
+      </div>
+      <div class="col-xs-2 amount-field">
+        Amount
+      </div>
+      <div class="col-xs-2 flag-rating-field">
+        Flag Score
+      </div>
+    </div>
+    {% for transaction in transactions %}
+      {% include 'main/transaction.html' %}
+    {% endfor %}
+  </div>
+</div>
+{% endblock %}
