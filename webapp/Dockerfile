@@ -8,6 +8,8 @@ WORKDIR /wealth-watcher
 
 
 RUN pip3 install -r requirements.txt
+RUN python3 manage.py makemigrations
+RUN python3 manage.py migrate
 ENTRYPOINT ["gunicorn3"]
 CMD ["--bind", "0.0.0.0:8000", "wealthwatcher.wsgi:application"]
 #ENTRYPOINT ["python3"]
