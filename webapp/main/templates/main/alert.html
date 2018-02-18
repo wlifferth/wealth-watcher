@@ -1,0 +1,47 @@
+{% extends 'main/base.html' %}
+{% block content %}
+<div id="body-content">
+  <div class="content-box">
+    <div class="content-box-title">
+      <div class="row">
+        <div class="col-xs-8">
+          ${{ purchase.amount }} at {{ purchase.merchant.name }}
+        </div>
+        <div class="col-xs-4">
+          {{ purchase.flag_title }}
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-xs-2">
+        Date:<br>
+        Merchant:<br>
+        Amount:<br>
+      </div>
+      <div class="col-xs-2">
+        {{ purchase.date }}<br>
+        {{ purchase.merchant.name }}<br>
+        ${{ purchase.amount }}
+      </div>
+      <div class="col-xs-8">
+        {{ purchase.flag_message }}
+        Was this a fraudulent transaction?<br>
+        <div class="row">
+          <div class="col-xs-6">
+            Fraud<br>
+            <a href="{% url 'resolve' purchase.purchase_id 'fraud' %}">
+              <button class="btn">I <strong>didn't</strong> make this transaction</button>
+            </a>
+          </div>
+          <div class="col-xs-6">
+            Valid<br>
+            <a href="{% url 'resolve' purchase.purchase_id 'valid' %}">
+              <button class="btn">I <strong>did</strong> make this transaction</button>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

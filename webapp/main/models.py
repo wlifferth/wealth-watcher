@@ -3,7 +3,7 @@ from django.db import models
 # Create your models here.
 
 class UserProfile(models.Model):
-    user_id = models.IntegerField()
+    user_id = models.CharField(max_length=100)
     first_name = models.CharField(max_length=100)
     last_name = models.CharField(max_length=100)
     street_number = models.CharField(max_length=100)
@@ -15,13 +15,13 @@ class UserProfile(models.Model):
         return "UserProfile({} {})".format(self.first_name, self.last_name)
 
 class Account(models.Model):
-    account_id = models.IntegerField()
+    account_id = models.CharField(max_length=100)
     user_profile = models.ForeignKey(UserProfile, on_delete=models.CASCADE)
     balance = models.FloatField()
     nickname = models.CharField(max_length=100)
 
 class Merchant(models.Model):
-    merchant_id = models.IntegerField()
+    merchant_id = models.CharField(max_length=100)
     name = models.CharField(max_length=100)
     category = models.CharField(max_length=100)
     street_number = models.TextField(max_length=100)
@@ -33,7 +33,7 @@ class Merchant(models.Model):
         return "Merchant({})".format(self.name)
 
 class Purchase(models.Model):
-    purchase_id = models.IntegerField()
+    purchase_id = models.CharField(max_length=100)
     date = models.DateField()
     merchant = models.ForeignKey(Merchant, on_delete=models.CASCADE)
     account = models.ForeignKey(Account, on_delete=models.CASCADE)
@@ -47,7 +47,7 @@ class Purchase(models.Model):
         return "Purchase(${} at {})".format(self.amount, self.merchant.name)
 
 class Transfer(models.Model):
-    transfer_id = models.IntegerField()
+    transfer_id = models.CharField(max_length=100)
     date = models.DateField()
     payer = models.ForeignKey(UserProfile, on_delete=models.CASCADE, related_name='payer')
     payee = models.ForeignKey(UserProfile, on_delete=models.CASCADE, related_name='payee')
