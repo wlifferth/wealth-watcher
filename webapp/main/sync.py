@@ -91,3 +91,6 @@ def sync():
                 except:
                     pass
     print("NEW COUNT: {}".format(new_count))
+    Account.objects.update(account_id=1)
+    UserProfile.objects.update(user_id=1)
+
