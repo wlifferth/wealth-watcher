@@ -32,6 +32,7 @@ ALLOWED_HOSTS = ["getwealthwatcher.com", "*"]
 
 INSTALLED_APPS = [
     'main',
+    'learning',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
