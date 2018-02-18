@@ -6,7 +6,10 @@ RUN yes | apt-get install gunicorn3
 COPY . /wealth-watcher
 WORKDIR /wealth-watcher
 
-RUN pip3 install -r requirements.txt 
+
+RUN pip3 install -r requirements.txt
 ENTRYPOINT ["gunicorn3"]
 CMD ["--bind", "0.0.0.0:8000", "wealthwatcher.wsgi:application"]
+#ENTRYPOINT ["python3"]
+#CMD ["manage.py", "runserver"]
 
