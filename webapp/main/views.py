@@ -11,6 +11,13 @@ flag_messages = {
     'high-flag-score': "We flagged this transaction as potentially fraudulent because it recieved a high score from our anomaly detection algorithm. We can't be sure why, but it shows some similarities with other fraudulent transactions we've seen. If you'd like this kind of transaction to not be flagged in the future, head to the settings page and change Anomaly Detection Threshold to a lower setting.",
 }
 
+flag_titles = {
+    'unusual-merchant-spending': "Unusual Merchant Spending",
+    'high-spending': "High Spending",
+    'distance': "Unusual Location",
+    'untrused-merchant': "Untrusted Merchant",
+}
+
 # Create your views here.
 def splash(request):
     context = {}
@@ -45,13 +52,31 @@ def dashboard(request):
 
 def alerts(request):
     context = {}
-    purchases = Purchase.objects.filter(flag_resolution='open')
+    purchases = Purchase.objects.filter(flag_resolution='open').order_by('-date')
     for purchase in purchases:
         purchase.flag_message = flag_messages[purchase.flag_code]
+        purchase.flag_title = flag_titles[purchase.flag_code]
         print(purchase)
     context['alerts'] = purchases
     return render(request, 'main/alerts.html', context)
 
+def alert(request, purchase_id):
+    context = {}
+    purchase = Purchase.objects.filter(purchase_id=purchase_id).get()
+    context['purchase'] = purchase
+    purchase.flag_message = flag_messages[purchase.flag_code]
+    purchase.flag_title = flag_titles[purchase.flag_code]
+    return render(request, 'main/alert.html', context)
+
+def resolve(request, purchase_id, resolution):
+    context = {}
+    purchase = Purchase.objects.filter(purchase_id=purchase_id).get()
+    purchase.flag_resolution = 'closed'
+    purchase.save()
+    if resolution == "fraud":
+        return render(request, 'main/fraud-reported.html', context)
+    else:
+        return render(request, 'main/valid-reported.html', context)
 
 def run_rules(request):
     rules.rules()

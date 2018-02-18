@@ -93,8 +93,9 @@ input, textarea {
   padding: 20px;
 }
 
-.content-box-title {
-  font-size: 40px;
+.content-box-title,
+.content-box-title div {
+  font-size: 36px;
 }
 
 #comment {
