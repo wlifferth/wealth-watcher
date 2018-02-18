@@ -1,0 +1,42 @@
+{% extends 'main/base.html' %}
+{% block content %}
+<script src="https://env-83226.customer.cloud.microstrategy.com/MicroStrategyLibrary/javascript/embeddinglib.js"></script>
+<div id="body-content">
+  <div id="dossierContainer">
+    <iframe style="width: 100%; height: 85%" src="https://env-83226.customer.cloud.microstrategy.com/MicroStrategyLibrary/app/B7CA92F04B9FAE8D941C3E9B7E0CD754/E02CC86211E8146A35F80080EF550F0E/K53--K46"></iframe>
+  </div>
+  <div id="transaction-list">
+    <div class="row transaction-list-header">
+      <div class="col-xs-2 date-field">
+        Date
+      </div>
+      <div class="col-xs-3 merchant-field">
+        Merchant
+      </div>
+      <div class="col-xs-3 category-field">
+        Category
+      </div>
+      <div class="col-xs-2 amount-field">
+        Amount
+      </div>
+      <div class="col-xs-2 flag-rating-field">
+        Flag Score
+      </div>
+    </div>
+    {% for transaction in transactions %}
+    {% include 'main/transaction.html' %}
+    {% endfor %}
+  </div>
+</div>
+
+<script>
+/*var placeHolderDiv = document.getElementById("dossierContainer");
+microstrategy.dossier.create({
+  placeholder:placeHolderDiv,
+  //url:"http://env-83226.customer.cloud.microstrategy.com/MicroStrategyLibrary/app/B7CA92F04B9FAE8D941C3E9B7E0CD754/E02CC86211E8146A35F80080EF550F0E/K53--K46"
+  url:"https://env-83226.customer.cloud.microstrategy.com/MicroStrategyLibrary/app/B7CA92F04B9FAE8D941C3E9B7E0CD754/E02CC86211E8146A35F80080EF550F0E/K53--K46"
+});*/
+</script>
+
+{% endblock %}
+

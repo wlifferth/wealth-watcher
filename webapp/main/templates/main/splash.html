@@ -1,5 +1,8 @@
 {% extends 'main/base.html' %}
 {% load static %}
+{% block navitems %}
+<li><a href="{% url 'login' %}" class="log-in">Log In</a></li>
+{% endblock %}
 {% block title %}
 Home | Wealth Watcher
 {% endblock %}
