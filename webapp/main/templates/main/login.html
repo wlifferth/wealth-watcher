@@ -1,0 +1,28 @@
+{% extends 'main/base.html' %}
+{% block navitems %}
+{% endblock %}
+{% block content %}
+ <div class="content-box login-box">
+   <div class="content-box-title">
+     Log In
+   </div>
+   <form action="{% url 'dashboard' %}">
+     <div class="row login-row">
+       <div class="col-xs-4">
+         Username
+       </div>
+       <div class="col-xs-8">
+         <input type="text"></input><br>
+       </div>
+     </div>
+     <div class="row login-row">
+       <div class="col-xs-4">
+         Password
+       </div>
+       <div class="col-xs-8">
+         <input type="password"></input><br>
+       </div>
+       <input type="submit" value="Log In"></input>
+   </form>
+ </div>
+{% endblock %}
