@@ -9,5 +9,6 @@ urlpatterns = [
     path('dashboard/', views.dashboard, name='dashboard'),
     path('alerts/', views.alerts, name='alerts'),
     path('run_rules/', views.run_rules, name='run-rules'),
+    path('run_sync/', views.run_sync, name='run-sync'),
     path('login/', views.log_in, name='login'),
 ]

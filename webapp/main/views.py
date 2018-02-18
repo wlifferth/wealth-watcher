@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 from .models import *
-from . import rules
+from . import rules, sync
 
 flag_messages = {
     'unusual-merchant-spending': "We tagged this transaction as potentially fraudulent because you normally spend much less when you make a transaction with this merchant. If you'd like this kind of transaction to not be flagged in the future, head to the settings page and change Merchant Threshold to a higher value.",
@@ -39,7 +39,7 @@ def dashboard(request):
     user_id = 1
     up = UserProfile.objects.filter(user_id=user_id).get()
     account = up.account_set.get()
-    purchases = account.purchase_set.all()
+    purchases = account.purchase_set.order_by('-date').all()
     context['transactions'] = purchases
     return render(request, 'main/dashboard.html', context)
 
@@ -56,6 +56,10 @@ def alerts(request):
 def run_rules(request):
     rules.rules()
     return HttpResponse("rules have been run")
+
+def run_sync(request):
+    sync.sync()
+    return HttpResponse("sync has been run")
 
 def log_in(request):
     context = {}
