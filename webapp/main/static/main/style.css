@@ -87,8 +87,8 @@ input, textarea {
 }
 
 .content-box {
-  background-color: #666;
-  color: white;
+  background-color: white;
+  color: black;
   margin: 20px 5px;
   padding: 20px;
 }
@@ -141,4 +141,21 @@ Dashboard
   border-bottom-width: 1px;
   border-bottom-color: #444444;
   border-bottom-style: solid;
+}
+
+/**********************
+Login
+**********************/
+.login-box {
+  max-width: 300px;
+  display: block;
+  margin: auto;
+}
+
+input {
+    width:100%;
+}
+
+.login-row {
+  margin: 5px;
 }

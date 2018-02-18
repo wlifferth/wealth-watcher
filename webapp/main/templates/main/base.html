@@ -22,7 +22,7 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="#">
+      <a class="navbar-brand" href="{% url 'splash' %}">
         <img src="{% static 'main/wealth-watcher-text-mark.png' %}" height="50px"/>
       </a>
     </div>
@@ -31,7 +31,8 @@
 
       <ul class="nav navbar-nav navbar-right">
         {% block navitems %}
-        <li><a href="#" class="log-in">Log In</a></li>
+        <li><a href="{% url 'dashboard' %}" class="dashboard">Dashboard</a></li>
+        <li><a href="{% url 'alerts' %}" class="alerts">Alerts</a></li>
         {% endblock %}
       </ul>
     </div><!-- /.navbar-collapse -->
