@@ -17,7 +17,6 @@ Django app to stitch it all together
 Using machine learning we can pinpoint transactions that might be fraudulent
 
 
-
 # Models
 
 ## UserProfile

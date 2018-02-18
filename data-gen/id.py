@@ -1,0 +1,223 @@
+merchants = [
+        {
+            "_id": "5a88aafd6514d52c7774b52e",
+            "name": "Walmart",
+            "category": "5144",
+            "address": {
+                "street_number": "2501",
+                "street_name": "University Commons Way",
+                "city": "Knoxville",
+                "state": "TN",
+                "zip": "37919"
+                },
+            "geocode": {
+                "lat": 0,
+                "lng": 0
+                },
+            "creation_date": "2018-02-17"
+            },
+        {
+            "_id": "5a88abc26514d52c7774b530",
+            "name": "Target",
+            "category": "5144",
+            "address": {
+                "street_number": "11100",
+                "street_name": "Parkside Drive",
+                "city": "Knoxville",
+                "state": "TN",
+                "zip": "37934"
+                },
+            "geocode": {
+                "lat": 0,
+                "lng": 0
+                },
+            "creation_date": "2018-02-17"
+            },
+        {
+            "_id": "5a88ac556514d52c7774b531",
+            "name": "McDonald's",
+            "category": "5814",
+            "address": {
+                "street_number": "1720",
+                "street_name": "Cumberland Avenue",
+                "city": "Knoxville",
+                "state": "TN",
+                "zip": "37916"
+                },
+            "geocode": {
+                "lat": 0,
+                "lng": 0
+                },
+            "creation_date": "2018-02-17"
+            },
+        {
+                "_id": "5a88ae836514d52c7774b536",
+                "name": "Weigel's",
+                "category": "5541",
+                "address": {
+                    "street_number": "3815",
+                    "street_name": "Western Avenue",
+                    "city": "Knoxville",
+                    "state": "TN",
+                    "zip": "37921"
+                    },
+                "geocode": {
+                    "lat": 0,
+                    "lng": 0
+                    },
+                "creation_date": "2018-02-17"
+                },
+        {
+                "_id": "5a88afc26514d52c7774b538",
+                "name": "Regal Cinema",
+                "category": "7832",
+                "address": {
+                    "street_number": "510",
+                    "street_name": "Gay Street",
+                    "city": "Knoxville",
+                    "state": "TN",
+                    "zip": "37902"
+                    },
+                "geocode": {
+                    "lat": 0,
+                    "lng": 0
+                    },
+                "creation_date": "2018-02-17"
+                },
+        {
+                "_id": "5a88b0b86514d52c7774b539",
+                "name": "17th Street Deli",
+                "category": "5814",
+                "address": {
+                    "street_number": "115",
+                    "street_name": "17th Street",
+                    "city": "Knoxville",
+                    "state": "TN",
+                    "zip": "37916"
+                    },
+                "geocode": {
+                    "lat": 0,
+                    "lng": 0
+                    },
+                "creation_date": "2018-02-17"
+                },
+        {
+                "_id": "5a88b1196514d52c7774b53a",
+                "name": "O'Charley's",
+                "category": "5812",
+                "address": {
+                    "street_number": "8077",
+                    "street_name": "Kingston Pike",
+                    "city": "Knoxville",
+                    "state": "TN",
+                    "zip": "37919"
+                    },
+                "geocode": {
+                    "lat": 0,
+                    "lng": 0
+                    },
+                "creation_date": "2018-02-17"
+                },
+        {
+                "_id": "5a88b3cd6514d52c7774b53e",
+                "name": "Amazon",
+                "category": "5144",
+                "address": {
+                    "street_number": "410",
+                    "street_name": "Terry Avenue",
+                    "city": "Seattle",
+                    "state": "WA",
+                    "zip": "98109"
+                    },
+                "geocode": {
+                    "lat": 0,
+                    "lng": 0
+                    },
+                "creation_date": "2018-02-17"
+                },
+        {
+                "_id": "5a88b5226514d52c7774b540",
+                "name": "North Korea Missile Program",
+                "category": "1234",
+                "address": {
+                    "street_number": "1",
+                    "street_name": "Kim Jong-un Way",
+                    "city": "Pyongyang",
+                    "state": "NK",
+                    "zip": "11111"
+                    },
+                "geocode": {
+                    "lat": 0,
+                    "lng": 0
+                    },
+                "creation_date": "2018-02-17"
+                },
+        {
+                "_id": "5a88b58d6514d52c7774b541",
+                "name": "McDonald's",
+                "category": "5814",
+                "address": {
+                    "street_number": "1919",
+                    "street_name": "Davis Street",
+                    "city": "San Leandro",
+                    "state": "CA",
+                    "zip": "94577"
+                    },
+                "geocode": {
+                    "lat": 0,
+                    "lng": 0
+                    },
+                "creation_date": "2018-02-17"
+                },
+        {
+                "_id": "5a88bad36514d52c7774b545",
+                "name": "Netflix",
+                "category": "7829",
+                "address": {
+                    "street_number": "100",
+                    "street_name": "Winchester Circle",
+                    "city": "Los Gatos",
+                    "state": "CA",
+                    "zip": "95032"
+                    },
+                "geocode": {
+                    "lat": 0,
+                    "lng": 0
+                    },
+                "creation_date": "2018-02-17"
+                },
+        {
+                "_id": "5a88bb496514d52c7774b547",
+                "name": "The Standard at Knoxville",
+                "category": "6513",
+                "address": {
+                    "street_number": "705",
+                    "street_name": "17th Street",
+                    "city": "Knoxville",
+                    "state": "TN",
+                    "zip": "37916"
+                    },
+                "geocode": {
+                    "lat": 0,
+                    "lng": 0
+                    },
+                "creation_date": "2018-02-17"
+                }
+        ]
+
+
+with open("transactions", "r") as f:
+    for line in f:
+        ll = line.strip().split(",")
+        id_ = ll[1]
+        for merchant in merchants:
+            if merchant["_id"] == id_:
+                ll.append(merchant["name"])
+                ll.append(merchant["category"])
+                ll.append(merchant["address"]["street_number"])
+                ll.append(merchant["address"]["street_name"])
+                ll.append(merchant["address"]["city"])
+                ll.append(merchant["address"]["state"])
+                ll.append(merchant["address"]["zip"])
+                break
+        print(",".join(ll))
